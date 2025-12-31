@@ -205,6 +205,41 @@
             border-top: 1px solid var(--slate-200);
         }
 
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+        }
+
+        .footer-badge a {
+            color: var(--slate-400);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: #f97316;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .footer-badge:hover .dot {
+            background: var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        .footer-badge:hover a {
+            color: var(--slate-600);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
         @media (max-width: 640px) {
             .header { padding: 2rem 1.5rem; }
             .main { padding: 2rem 1.25rem; }
@@ -396,7 +431,10 @@
     </main>
 
     <footer class="footer">
-        <p style="font-size: 0.8125rem; color: #10b981;">Hoe beter de voorbereiding, hoe meer geluk je hebt.</p>
+        <div class="footer-badge">
+            <span class="dot"></span>
+            <a href="https://bit.ly/4azfO7S">contact</a>
+        </div>
     </footer>
 </body>
 </html>
