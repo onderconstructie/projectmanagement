@@ -246,6 +246,34 @@
             .title { font-size: 1.5rem; }
             .tool-card { padding: 1.25rem; }
         }
+    
+        /* PDCA-indeling */
+        .pdca-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 2.5rem; }
+        .pdca-nav a {
+            position: relative; display: flex; flex-direction: column; align-items: center; padding: 0.75rem 0.5rem;
+            background: var(--white); border: 1.5px solid var(--slate-200); border-radius: 12px; text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .pdca-nav a:hover { border-color: var(--accent); }
+        .pdca-nav strong { font-size: 1rem; color: var(--slate-800); }
+        .pdca-nav span { font-size: 0.75rem; color: var(--slate-500); }
+        .pdca-nav a:not(:last-child)::after {
+            content: ''; position: absolute; right: -0.5rem; top: 50%; width: 0.5rem; height: 1.5px; background: var(--slate-300);
+        }
+        .phase-section { margin-bottom: 2.75rem; scroll-margin-top: 1rem; }
+        .phase-title { display: flex; align-items: center; gap: 0.625rem; font-size: 1.25rem; font-weight: 700; color: var(--slate-800); letter-spacing: -0.02em; }
+        .phase-letter {
+            width: 30px; height: 30px; border-radius: 8px; background: var(--accent-light, #d1fae5); color: #059669;
+            display: inline-flex; align-items: center; justify-content: center; font-size: 0.9375rem;
+        }
+        .phase-intro { color: var(--slate-500); font-size: 0.9375rem; margin: 0.25rem 0 1.25rem; }
+        .ph-chips { display: flex; gap: 0.375rem; margin: -0.25rem 0 0.375rem; }
+        .ph-chip { font-size: 0.6875rem; font-weight: 500; color: #059669; box-shadow: inset 0 0 0 1px #a7f3d0; border-radius: 999px; padding: 0 0.4375rem; line-height: 1.6; }
+        @media (max-width: 500px) {
+            .pdca-nav { gap: 0.375rem; }
+            .pdca-nav a { padding: 0.625rem 0.25rem; }
+            .pdca-nav span { font-size: 0.6875rem; }
+        }
     </style>
 </head>
 <body>
@@ -270,51 +298,12 @@
     </header>
 
     <main class="main">
-        <p class="section-label">Tools</p>
-
-        <div class="tools-grid">
-            <!-- Project Radar -->
-            <a href="https://onderconstructie.github.io/project-radar/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-                        <circle cx="20" cy="20" r="10" fill="none" stroke="#10b981" stroke-width="1" opacity="0.5"/>
-                        <circle cx="20" cy="20" r="5" fill="none" stroke="#10b981" stroke-width="1" opacity="0.3"/>
-                        <path d="M20 6 L20 20 L32 12" fill="#10b981" opacity="0.6"/>
-                        <circle cx="20" cy="20" r="2.5" fill="#10b981"/>
-                        <line x1="20" y1="20" x2="20" y2="4" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
-                        <line x1="20" y1="20" x2="35" y2="20" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
-                        <line x1="20" y1="20" x2="20" y2="36" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
-                        <line x1="20" y1="20" x2="5" y2="20" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
-                    </svg>
-                </div>
-                <h2 class="tool-title">Project Radar</h2>
-                <p class="tool-description">Visualiseer projectstatus met een radar. Scoor categorieën, zie de totaalstatus.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-            <!-- SprintFlow -->
-            <a href="https://onderconstructie.github.io/kanban/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="5" y="5" width="30" height="30" rx="5" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-                        <rect x="9" y="11" width="6" height="18" rx="1.5" fill="#10b981" opacity="0.3"/>
-                        <rect x="17" y="11" width="6" height="13" rx="1.5" fill="#10b981" opacity="0.5"/>
-                        <rect x="25" y="11" width="6" height="8" rx="1.5" fill="#10b981" opacity="0.8"/>
-                    </svg>
-                </div>
-                <h2 class="tool-title">SprintFlow</h2>
-                <p class="tool-description">Visueel kanban-bord voor agile projecten. Beheer sprints, taken en teamcapaciteit.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-            <!-- Stakeholder Radar -->
+        <nav class="pdca-nav" aria-label="De projectcyclus"><a href="#plan"><strong>Plan</strong><span>voorbereiden</span></a><a href="#do"><strong>Do</strong><span>uitvoeren</span></a><a href="#check"><strong>Check</strong><span>meten</span></a><a href="#act"><strong>Act</strong><span>bijsturen</span></a></nav>
+        <section class="phase-section" id="plan">
+            <h2 class="phase-title"><span class="phase-letter">P</span>Plan</h2>
+            <p class="phase-intro">Voorbereiden: inschatten, prioriteren, rollen en risico&#x27;s.</p>
+            <div class="tools-grid">
+                    <!-- Stakeholder Radar -->
             <a href="https://onderconstructie.github.io/stakeholders/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -334,8 +323,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-            <!-- RACI-matrix -->
+                    <!-- RACI-matrix -->
             <a href="https://onderconstructie.github.io/raci/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/> <rect x="11.5" y="11.5" width="7.5" height="7.5" rx="2" fill="#10b981"/> <rect x="21" y="11.5" width="7.5" height="7.5" rx="2" fill="#1e293b"/> <rect x="12" y="21.5" width="6.5" height="6.5" rx="1.8" fill="#ffffff" stroke="#10b981" stroke-width="1.3"/> <rect x="21.5" y="21.5" width="6.5" height="6.5" rx="1.8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.3"/> </svg>
@@ -347,8 +335,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-        <!-- Risicomatrix -->
+                    <!-- Risicomatrix -->
             <a href="https://onderconstructie.github.io/risico" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,6 +344,7 @@
                         <circle cx="20" cy="27" r="2" fill="#10b981"/>
                     </svg>
                 </div>
+                <div class="ph-chips"><span class="ph-chip">ook Check</span></div>
                 <h2 class="tool-title">Risicomatrix</h2>
                 <p class="tool-description">Breng projectrisico's in kaart met de kans-impact matrix. Prioriteer en beheers risico's visueel.</p>
                 <span class="tool-arrow">
@@ -364,8 +352,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-            <!-- Prioriteren -->
+                    <!-- Prioriteren -->
             <a href="https://onderconstructie.github.io/prioriteit/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='16' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5'/><rect x='11' y='11' width='8.2' height='8.2' rx='2' fill='#10b981'/><rect x='20.8' y='11' width='8.2' height='8.2' rx='2' fill='#a7f3d0'/><rect x='11' y='20.8' width='8.2' height='8.2' rx='2' fill='#a7f3d0'/><rect x='20.8' y='20.8' width='8.2' height='8.2' rx='2' stroke='#10b981' stroke-width='1.2'/></svg>
@@ -377,28 +364,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-        <!-- De Sociale Mixer -->
-            <a href="https://onderconstructie.github.io/mixer/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-                        <circle cx="12" cy="13" r="3.5" fill="#10b981"/>
-                        <circle cx="28" cy="13" r="3.5" fill="#10b981"/>
-                        <circle cx="12" cy="27" r="3.5" fill="#10b981" opacity="0.6"/>
-                        <circle cx="28" cy="27" r="3.5" fill="#10b981" opacity="0.6"/>
-                        <line x1="20" y1="5" x2="20" y2="35" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
-                    </svg>
-                </div>
-                <h2 class="tool-title">De Sociale Mixer</h2>
-                <p class="tool-description">Verdeel een groep willekeurig in kleinere teams. Kies het aantal groepen en mix.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-            <!-- Afstemmingsparadox -->
+                    <!-- Afstemmingsparadox -->
             <a href="https://onderconstructie.github.io/paradox/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -429,8 +395,166 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-            <!-- Nomen Fortuna -->
+                    <!-- Project Realisme Monitor -->
+            <a href="https://onderconstructie.github.io/project-realisme" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+                        <path d="M20 10v10l6 3.5" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="20" cy="20" r="2.5" fill="#10b981"/>
+                        <circle cx="20" cy="6" r="1.5" fill="#10b981" opacity="0.5"/>
+                        <circle cx="34" cy="20" r="1.5" fill="#10b981" opacity="0.5"/>
+                        <circle cx="6" cy="20" r="1.5" fill="#10b981" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h2 class="tool-title">Project Realisme Monitor</h2>
+                <p class="tool-description">Bereken realistische doorlooptijd met Monte Carlo simulatie. Ontkoppel inspanning van kalendertijd.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    </div>
+        </section>
+        <section class="phase-section" id="do">
+            <h2 class="phase-title"><span class="phase-letter">D</span>Do</h2>
+            <p class="phase-intro">Uitvoeren: het werk, de taken, de beslissingen.</p>
+            <div class="tools-grid">
+                    <!-- SprintFlow -->
+            <a href="https://onderconstructie.github.io/kanban/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="5" width="30" height="30" rx="5" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+                        <rect x="9" y="11" width="6" height="18" rx="1.5" fill="#10b981" opacity="0.3"/>
+                        <rect x="17" y="11" width="6" height="13" rx="1.5" fill="#10b981" opacity="0.5"/>
+                        <rect x="25" y="11" width="6" height="8" rx="1.5" fill="#10b981" opacity="0.8"/>
+                    </svg>
+                </div>
+                <div class="ph-chips"><span class="ph-chip">ook Plan</span></div>
+                <h2 class="tool-title">SprintFlow</h2>
+                <p class="tool-description">Visueel kanban-bord voor agile projecten. Beheer sprints, taken en teamcapaciteit.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    <!-- Vinkje -->
+            <a href="https://onderconstructie.github.io/vinkje/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+                        <rect x="11" y="12" width="6" height="6" rx="1.8" fill="#10b981"/>
+                        <path d="M12.6 15.1l1.1 1.1 2-2.2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="19.5" y="14" width="10" height="2" rx="1" fill="#10b981" opacity="0.5"/>
+                        <rect x="11" y="21.5" width="6" height="6" rx="1.8" stroke="#10b981" stroke-width="1.4"/>
+                        <rect x="19.5" y="23.5" width="8" height="2" rx="1" fill="#10b981" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h2 class="tool-title">Vinkje</h2>
+                <p class="tool-description">Een slanke checklist. Plak een lijst, vink af, zet alles terug voor de volgende keer en deel met een link.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    <!-- Beslissingslog -->
+            <a href="https://onderconstructie.github.io/beslissingen/" class="tool-card">
+                <div class="tool-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/><rect x="12.5" y="10.5" width="13" height="17" rx="2" stroke="#10b981" stroke-width="1.5" fill="#fff"/><path d="M15.5 15h7M15.5 18.5h7M15.5 22h4" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><circle cx="25.5" cy="26" r="4.5" fill="#10b981"/><path d="M23.6 26.1l1.3 1.3 2.4-2.6" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="ph-chips"><span class="ph-chip">ook Act</span></div>
+                <h2 class="tool-title">Beslissingslog</h2>
+                <p class="tool-description">Leg vast wat er beslist is, door wie, wanneer en waarom. Zo voer je dezelfde discussie geen drie keer.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    </div>
+        </section>
+        <section class="phase-section" id="check">
+            <h2 class="phase-title"><span class="phase-letter">C</span>Check</h2>
+            <p class="phase-intro">Meten en terugkijken: hoe staan we ervoor?</p>
+            <div class="tools-grid">
+                    <!-- Project Radar -->
+            <a href="https://onderconstructie.github.io/project-radar/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+                        <circle cx="20" cy="20" r="10" fill="none" stroke="#10b981" stroke-width="1" opacity="0.5"/>
+                        <circle cx="20" cy="20" r="5" fill="none" stroke="#10b981" stroke-width="1" opacity="0.3"/>
+                        <path d="M20 6 L20 20 L32 12" fill="#10b981" opacity="0.6"/>
+                        <circle cx="20" cy="20" r="2.5" fill="#10b981"/>
+                        <line x1="20" y1="20" x2="20" y2="4" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="20" y1="20" x2="35" y2="20" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="20" y1="20" x2="20" y2="36" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
+                        <line x1="20" y1="20" x2="5" y2="20" stroke="#64748b" stroke-width="0.5" opacity="0.3"/>
+                    </svg>
+                </div>
+                <h2 class="tool-title">Project Radar</h2>
+                <p class="tool-description">Visualiseer projectstatus met een radar. Scoor categorieën, zie de totaalstatus.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    <!-- Vergaderkost -->
+            <a href="https://onderconstructie.github.io/vergaderkost/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='16' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5'/><path d='M13.5 10.5h13M13.5 29.5h13' stroke='#10b981' stroke-width='1.8' stroke-linecap='round'/><path d='M15 10.5c0 5.2 5 6.2 5 9.5s-5 4.3-5 9.5M25 10.5c0 5.2-5 6.2-5 9.5s5 4.3 5 9.5' stroke='#10b981' stroke-width='1.5' stroke-linecap='round'/><path d='M17 14.5h6l-3 4z' fill='#10b981' opacity='0.45'/><path d='M16.2 28.5c.6-2.6 2.2-3.6 3.8-3.6s3.2 1 3.8 3.6z' fill='#10b981'/></svg>
+                </div>
+                <h2 class="tool-title">Vergaderkost</h2>
+                <p class="tool-description">Zie live hoeveel mensentijd een vergadering kost. Deelnemers maal minuten, met een vergelijking in werkdagen. Geld alleen als je dat zelf wil.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    </div>
+        </section>
+        <section class="phase-section" id="act">
+            <h2 class="phase-title"><span class="phase-letter">A</span>Act</h2>
+            <p class="phase-intro">Bijsturen en vastleggen wat we anders doen.</p>
+            <div class="tools-grid">
+                    <!-- Retro -->
+            <a href="https://onderconstructie.github.io/retro/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='16' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5'/><path d='M12.6 17.2A8 8 0 1 1 13.4 24.8' stroke='#10b981' stroke-width='2.2' stroke-linecap='round'/><path d='M11.4 12.6v4.9h4.9' stroke='#10b981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/><circle cx='20.5' cy='20.5' r='2.2' fill='#10b981'/></svg>
+                </div>
+                <div class="ph-chips"><span class="ph-chip">ook Check</span></div>
+                <h2 class="tool-title">Retro</h2>
+                <p class="tool-description">Een retrospectieve voor wie de vergadering leidt. Verzamel wat goed ging en beter kan, stem, maak acties en volg ze de volgende keer op.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    </div>
+        </section>
+        <section class="phase-section" id="vergaderen">
+            <h2 class="phase-title">Vergaderen en samenwerken</h2>
+            <p class="phase-intro">Voor elk overleg, los van de fase waarin je zit.</p>
+            <div class="tools-grid">
+                    <!-- De Sociale Mixer -->
+            <a href="https://onderconstructie.github.io/mixer/" class="tool-card">
+                <div class="tool-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+                        <circle cx="12" cy="13" r="3.5" fill="#10b981"/>
+                        <circle cx="28" cy="13" r="3.5" fill="#10b981"/>
+                        <circle cx="12" cy="27" r="3.5" fill="#10b981" opacity="0.6"/>
+                        <circle cx="28" cy="27" r="3.5" fill="#10b981" opacity="0.6"/>
+                        <line x1="20" y1="5" x2="20" y2="35" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    </svg>
+                </div>
+                <h2 class="tool-title">De Sociale Mixer</h2>
+                <p class="tool-description">Verdeel een groep willekeurig in kleinere teams. Kies het aantal groepen en mix.</p>
+                <span class="tool-arrow">
+                    Open tool
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+            </a>
+                    <!-- Nomen Fortuna -->
             <a href="https://onderconstructie.github.io/fortuna/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -450,21 +574,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-            <!-- Vergaderkost -->
-            <a href="https://onderconstructie.github.io/vergaderkost/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='16' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5'/><path d='M13.5 10.5h13M13.5 29.5h13' stroke='#10b981' stroke-width='1.8' stroke-linecap='round'/><path d='M15 10.5c0 5.2 5 6.2 5 9.5s-5 4.3-5 9.5M25 10.5c0 5.2-5 6.2-5 9.5s5 4.3 5 9.5' stroke='#10b981' stroke-width='1.5' stroke-linecap='round'/><path d='M17 14.5h6l-3 4z' fill='#10b981' opacity='0.45'/><path d='M16.2 28.5c.6-2.6 2.2-3.6 3.8-3.6s3.2 1 3.8 3.6z' fill='#10b981'/></svg>
-                </div>
-                <h2 class="tool-title">Vergaderkost</h2>
-                <p class="tool-description">Zie live hoeveel mensentijd een vergadering kost. Deelnemers maal minuten, met een vergelijking in werkdagen. Geld alleen als je dat zelf wil.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-        <!-- De Mono-Minuut -->
+                    <!-- De Mono-Minuut -->
             <a href="https://onderconstructie.github.io/check-in/" class="tool-card">
                 <div class="tool-icon">
                     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -481,73 +591,8 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
             </a>
-
-            <!-- Vinkje -->
-            <a href="https://onderconstructie.github.io/vinkje/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-                        <rect x="11" y="12" width="6" height="6" rx="1.8" fill="#10b981"/>
-                        <path d="M12.6 15.1l1.1 1.1 2-2.2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <rect x="19.5" y="14" width="10" height="2" rx="1" fill="#10b981" opacity="0.5"/>
-                        <rect x="11" y="21.5" width="6" height="6" rx="1.8" stroke="#10b981" stroke-width="1.4"/>
-                        <rect x="19.5" y="23.5" width="8" height="2" rx="1" fill="#10b981" opacity="0.5"/>
-                    </svg>
-                </div>
-                <h2 class="tool-title">Vinkje</h2>
-                <p class="tool-description">Een slanke checklist. Plak een lijst, vink af, zet alles terug voor de volgende keer en deel met een link.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-        <!-- Beslissingslog -->
-            <a href="https://onderconstructie.github.io/beslissingen/" class="tool-card">
-                <div class="tool-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/><rect x="12.5" y="10.5" width="13" height="17" rx="2" stroke="#10b981" stroke-width="1.5" fill="#fff"/><path d="M15.5 15h7M15.5 18.5h7M15.5 22h4" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/><circle cx="25.5" cy="26" r="4.5" fill="#10b981"/><path d="M23.6 26.1l1.3 1.3 2.4-2.6" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h2 class="tool-title">Beslissingslog</h2>
-                <p class="tool-description">Leg vast wat er beslist is, door wie, wanneer en waarom. Zo voer je dezelfde discussie geen drie keer.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-        <!-- Retro -->
-            <a href="https://onderconstructie.github.io/retro/" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='16' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5'/><path d='M12.6 17.2A8 8 0 1 1 13.4 24.8' stroke='#10b981' stroke-width='2.2' stroke-linecap='round'/><path d='M11.4 12.6v4.9h4.9' stroke='#10b981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/><circle cx='20.5' cy='20.5' r='2.2' fill='#10b981'/></svg>
-                </div>
-                <h2 class="tool-title">Retro</h2>
-                <p class="tool-description">Een retrospectieve voor wie de vergadering leidt. Verzamel wat goed ging en beter kan, stem, maak acties en volg ze de volgende keer op.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-
-        <!-- Project Realisme Monitor -->
-            <a href="https://onderconstructie.github.io/project-realisme" class="tool-card">
-                <div class="tool-icon">
-                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="20" cy="20" r="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
-                        <path d="M20 10v10l6 3.5" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="20" cy="20" r="2.5" fill="#10b981"/>
-                        <circle cx="20" cy="6" r="1.5" fill="#10b981" opacity="0.5"/>
-                        <circle cx="34" cy="20" r="1.5" fill="#10b981" opacity="0.5"/>
-                        <circle cx="6" cy="20" r="1.5" fill="#10b981" opacity="0.5"/>
-                    </svg>
-                </div>
-                <h2 class="tool-title">Project Realisme Monitor</h2>
-                <p class="tool-description">Bereken realistische doorlooptijd met Monte Carlo simulatie. Ontkoppel inspanning van kalendertijd.</p>
-                <span class="tool-arrow">
-                    Open tool
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </span>
-            </a>
-        </div>
+                    </div>
+        </section>
     </main>
 
     <footer class="footer">
